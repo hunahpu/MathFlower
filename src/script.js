@@ -57,31 +57,15 @@ let flower = function (u, v, target) {
     //return new THREE.Vector3(x, y, z);
     target.set(x, y, z);
 };
-//tallo
 
-class CustomSinCurve extends THREE.Curve {
-
-	constructor( scale = 1 ) {
-
-		super();
-
-		this.scale = scale;
-
-	}
-
-	getPoint( t, optionalTarget = new THREE.Vector3() ) {
-
-		const tx = t*3 ;
-		const ty = t*t*t*3;
-		const tz = 0;
-
-		return optionalTarget.set( tx, ty, tz );
-
-	}
-
-}
 // Tallo
-const geometryTallo = new THREE.TubeGeometry( curve, 30, .2, 10, false );
+const tallo = new THREE.CubicBezierCurve3(
+	new THREE.Vector3( 0, 0, 0 ),
+	new THREE.Vector3( -5, -5, 0 ),
+	new THREE.Vector3( 20, -10, 0 ),
+	new THREE.Vector3( 10, -15, 0 )
+);
+const geometryTallo = new THREE.TubeGeometry( tallo, 30, .2, 10, false );
 const materialTallo = new THREE. MeshStandardMaterial ( {color: 0x0cc10b} );
 const cylinderTallo = new THREE.Mesh( geometryTallo, materialTallo );
 scene.add( cylinderTallo );
