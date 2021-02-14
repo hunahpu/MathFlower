@@ -57,7 +57,6 @@ let flower = function (u, v, target) {
     //return new THREE.Vector3(x, y, z);
     target.set(x, y, z);
 };
-const axesHelper = new THREE.AxesHelper( 5 ); scene.add( axesHelper );
 //tallo
 
 class CustomSinCurve extends THREE.Curve {
@@ -81,54 +80,19 @@ class CustomSinCurve extends THREE.Curve {
 	}
 
 }
-const path = new CustomSinCurve( 2 );
-
-
-const curve = new THREE.CubicBezierCurve3(
-	new THREE.Vector3( 0, 0, 0 ),
-	new THREE.Vector3( -5, -5, 0 ),
-	new THREE.Vector3( 20, -10, 0 ),
-	new THREE.Vector3( 10, -15, 0 )
-);
-
-const points = curve.getPoints( 50 );
-const geometry1 = new THREE.BufferGeometry().setFromPoints( points );
-
-const material1 = new THREE.LineBasicMaterial( { color : 0xff0000 } );
-
-// Create the final object to add to the scene
-const curveObject = new THREE.Line( geometry1, material1);
-scene.add(curveObject)
-
+// Tallo
 const geometryTallo = new THREE.TubeGeometry( curve, 30, .2, 10, false );
 const materialTallo = new THREE. MeshStandardMaterial ( {color: 0x0cc10b} );
 const cylinderTallo = new THREE.Mesh( geometryTallo, materialTallo );
 scene.add( cylinderTallo );
 
-//const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-//scene.add(ambientLight)
 
-// Equals
+// Ligth
 const ambientLight = new THREE.AmbientLight()
 ambientLight.color = new THREE.Color(0xffffff)
 ambientLight.intensity = 1
 scene.add(ambientLight)
-//cylinderTallo.rotation.x=Math.PI
-//cylinderTallo.position.y=-2
-//let numPoints = 10
-//var start = new THREE.Vector3(-10, 0, 20);
-//        var middle = new THREE.Vector3(0, 35, 0);
-//        var end = new THREE.Vector3(5, 0, -20);
 
- //       var curveQuad = new THREE.QuadraticBezierCurve3(start, middle, end);
-
-   //     var tube = new THREE.TubeGeometry(curveQuad, numPoints, 0.5, 20, false);
-     //   var mesh1 = new THREE.Mesh(tube, new THREE.MeshNormalMaterial({
-       //     opacity: 0.9,
-        //    transparent: true
-        //}));
-
-        //scene.add(mesh1);
 //parametric detail surface
 const data = {
     slices: 120,
@@ -181,8 +145,6 @@ if (window.location.hash == "#debug") {
     gui.add(petal, 'p', 0, 30, 0.1).onChange(updateGeometry)
     gui.add(petal, 'A1', 0, 1, 0.01).onChange(updateGeometry)
 }
-//gui.add(petal, 'R1', 0, 3, 0.01)
-//gui.add(petal, 'R0', 0, 3, 0.01)
 
 // Sizes
 const sizes = {
