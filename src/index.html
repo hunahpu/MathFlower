@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores</title>
+    <script id="shader-vs-show" type="x-shader/x-vertex"> 
+        attribute vec3 aPos;
+        attribute vec3 aPos1;
+        attribute vec3 aPos2;
+        attribute vec3 aCol;
+        uniform mat4 mvMatrix;
+        uniform vec4 a;
+        uniform float h;
+        varying vec3 color;
+      void main(void) {
+         vec3 pos = a.x*aPos + a.y*aPos1 + a.z*aPos2;
+         pos.x *= a.w;  pos.y += h;
+         gl_Position = mvMatrix * vec4(pos, 1.);
+         color = aCol;
+      }
+      </script> 
+       
+      <script id="shader-fs-show" type="x-shader/x-fragment"> 
+      precision mediump float;
+        varying vec3 color;
+      void main(void) {
+         gl_FragColor = vec4(color, 1.);
+      }
+      </script> 
+</head>
+<body>
+    <canvas class="webgl"></canvas>
+    <!--script src="./three.min.js"></script>
+    <script src="./script.js"></script-->
+    
+</body>
+</html>
